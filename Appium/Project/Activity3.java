@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class Activity2 {
+public class Activity3 {
     AndroidDriver driver;
     WebDriverWait wait;
 
@@ -35,13 +35,15 @@ public class Activity2 {
     public void addNotes() throws InterruptedException {
         driver.findElement(AppiumBy.accessibilityId("New text note")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.id("edit_note_text")));
-        driver.findElement(AppiumBy.id("editable_title")).sendKeys("FST Activity");
-        driver.findElement(AppiumBy.id("edit_note_text")).sendKeys("FST Activity notes1");
+        driver.findElement(AppiumBy.id("editable_title")).sendKeys("FST Activity Reminder");
+        driver.findElement(AppiumBy.id("edit_note_text")).sendKeys("FST Activity Reminder Notes");
 
         Thread.sleep(5000);
-        driver.findElement(AppiumBy.accessibilityId("Navigate up")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.id("browse_note_interior_content")));
-        Assert.assertEquals(driver.findElement(AppiumBy.xpath("index_note_title")).getText(), "FST Activity");
-        Assert.assertEquals(driver.findElement(AppiumBy.xpath("index_note_text_description")).getText(), "FST Activity notes1");
+        driver.findElement(AppiumBy.accessibilityId("Reminder")).click();
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.google.android.keep:id/menu_text\" and @text=\"Pick a date & time\"]")).click();
+        driver.findElement(AppiumBy.id("com.google.android.keep:id/time_spinner")).click();
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.google.android.keep:id/text\" and @text=\"Evening\"]")).click();
+        driver.findElement(AppiumBy.id("com.google.android.keep:id/save")).click();
+
     }
 }
